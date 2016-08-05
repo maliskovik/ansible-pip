@@ -1,0 +1,4 @@
+---
+# Main tasks file for pip role
+
+- include: pip.yml
