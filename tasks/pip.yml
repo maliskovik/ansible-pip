@@ -1,22 +1,9 @@
 ---
-#pip tasks
-
-- name: Get pip install script
-  get_url:
-    url: https://bootstrap.pypa.io/get-pip.py
-    dest: /tmp/get-pip.py
-    mode: 755
-    owner: root
-    group: root
-
 - name: Install pip
-  command: python /tmp/get-pip.py
-  args:
-    creates: "/usr/local/bin/pip"
-    chdir: /tmp
-
-- name: Install pip3
   apt:
-      name: "python3-pip"
-      state: latest
-      force: yes
+    name: "{{ item }}"
+    state: latest
+    force: yes
+  with_items:
+    - python-pip
+    - python3-pip
