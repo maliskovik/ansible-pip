@@ -1,5 +1,5 @@
 ---
-- name: Install pip
+- name: Install pip - Debian
   apt:
     name: "{{ item }}"
     state: latest
@@ -7,3 +7,13 @@
   with_items:
     - python-pip
     - python3-pip
+  when: ansible_os_family == "Debian"
+
+- name: Install pip - Archlinux
+  pacman:
+    state: latest
+    name: "{{ item }}"
+  with_items:
+    - python-pip
+    - python2-pip
+  when: ansible_os_family == "Archlinux"
