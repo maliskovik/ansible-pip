@@ -17,3 +17,10 @@
     - python-pip
     - python2-pip
   when: ansible_os_family == "Archlinux"
+
+- name: Install pip packages
+  pip:
+    name: "{{ item }}"
+    state: present
+  with_items: "{{ pip_custom_packages | default(omit) }}"
+  when: pip_custom_packages is defined
