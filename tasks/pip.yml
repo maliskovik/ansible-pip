@@ -1,7 +1,7 @@
 ---
 - name: Install pip - Debian
   apt:
-    name: "{{ pip_packages|default(omit) }}"
+    name: "{{ pip_packages_ubuntu|default(omit) }}"
     state: latest
     force: yes
   when: ansible_os_family == "Debian"

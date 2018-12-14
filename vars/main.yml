@@ -2,7 +2,8 @@
 pip_packages_ubuntu:
   - python-pip
   - python3-pip
-
+  - python-setuptools
+  - python3-setuptools
 pip_packages_arch:
   - python-pip
   - python2-pip
