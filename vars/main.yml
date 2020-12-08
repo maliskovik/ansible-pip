@@ -4,6 +4,12 @@ pip_packages_ubuntu:
   - python3-pip
   - python-setuptools
   - python3-setuptools
+
+pip_packages_ubuntu_18p:
+  - python3-pip
+  - python3-setuptools
+  - python-setuptools
+
 pip_packages_arch:
   - python-pip
   - python2-pip

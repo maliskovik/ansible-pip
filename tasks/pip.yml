@@ -4,7 +4,20 @@
     name: "{{ pip_packages_ubuntu|default(omit) }}"
     state: latest
     force: yes
-  when: ansible_os_family == "Debian"
+  when:
+    - ansible_os_family == "Debian"
+    - ansible_lsb.id == "Ubuntu"
+    - ansible_lsb.major_release|int < 18
+
+- name: Install pip - Ubuntu 18.04+
+  apt:
+    name: "{{ pip_packages_ubuntu_18p|default(omit) }}"
+    state: latest
+    force: yes
+  when:
+    - ansible_os_family == "Debian"
+    - ansible_lsb.id == "Ubuntu"
+    - ansible_lsb.major_release|int >= 16
 
 - name: Install pip - Archlinux
   pacman:
