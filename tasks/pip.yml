@@ -7,17 +7,28 @@
   when:
     - ansible_os_family == "Debian"
     - ansible_lsb.id == "Ubuntu"
+<<<<<<< HEAD
     - ansible_lsb.major_release|int < 18
 
 - name: Install pip - Ubuntu 18.04+
   apt:
     name: "{{ pip_packages_ubuntu_18p|default(omit) }}"
+=======
+    - ansible_lsb.major_release|int < 20
+- name: Install pip - Ubuntu 20.04
+  apt:
+    name: "{{ pip_packages_ubuntu_20|default(omit) }}"
+>>>>>>> 7b825ae (Adapted for ubuntu 20.04 and python3)
     state: latest
     force: yes
   when:
     - ansible_os_family == "Debian"
     - ansible_lsb.id == "Ubuntu"
+<<<<<<< HEAD
     - ansible_lsb.major_release|int >= 16
+=======
+    - ansible_lsb.major_release|int >= 20
+>>>>>>> 7b825ae (Adapted for ubuntu 20.04 and python3)
 
 - name: Install pip - Archlinux
   pacman:

@@ -13,3 +13,6 @@ pip_packages_ubuntu_18p:
 pip_packages_arch:
   - python-pip
   - python2-pip
+pip_packages_ubuntu_20:
+  - python3-pip
+  - python3-setuptools
