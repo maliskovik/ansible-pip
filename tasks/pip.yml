@@ -7,23 +7,17 @@
   when:
     - ansible_os_family == "Debian"
     - ansible_lsb.id == "Ubuntu"
-    - ansible_lsb.major_release|int < 18
-
-- name: Install pip - CentOS
-  yum:
-    name: "{{ pip_packages_centos|default(omit) }}"
-    state: latest
-  when: ansible_os_family == "RedHat"
-
-- name: Install pip - Ubuntu 18.04+
+    - ansible_lsb.major_release|int < 20
+    
+- name: Install pip - Ubuntu 20.04
   apt:
-    name: "{{ pip_packages_ubuntu_18p|default(omit) }}"
+    name: "{{ pip_packages_ubuntu_20|default(omit) }}"
     state: latest
     force: yes
   when:
     - ansible_os_family == "Debian"
     - ansible_lsb.id == "Ubuntu"
-    - ansible_lsb.major_release|int >= 18
+    - ansible_lsb.major_release|int >= 20
 
 - name: Install pip - Archlinux
   pacman:
