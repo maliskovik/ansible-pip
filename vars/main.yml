@@ -16,3 +16,6 @@ pip_packages_arch:
 pip_packages_ubuntu_20:
   - python3-pip
   - python3-setuptools
+
+pip_packages_centos:
+  - python3-pip

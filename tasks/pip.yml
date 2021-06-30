@@ -9,6 +9,12 @@
     - ansible_lsb.id == "Ubuntu"
     - ansible_lsb.major_release|int < 18
 
+- name: Install pip - CentOS
+  yum:
+    name: "{{ pip_packages_centos|default(omit) }}"
+    state: latest
+  when: ansible_os_family == "RedHat"
+
 - name: Install pip - Ubuntu 18.04+
   apt:
     name: "{{ pip_packages_ubuntu_18p|default(omit) }}"
@@ -17,7 +23,7 @@
   when:
     - ansible_os_family == "Debian"
     - ansible_lsb.id == "Ubuntu"
-    - ansible_lsb.major_release|int >= 16
+    - ansible_lsb.major_release|int >= 18
 
 - name: Install pip - Archlinux
   pacman:
@@ -25,8 +31,26 @@
     name: "{{ pip_packages_arch|default(omit) }}"
   when: ansible_os_family == "Archlinux"
 
+- name: Upgrade pip ubuntu
+  pip:
+    name: pip
+    state: latest
+    executable: pip3
+  when:
+    - ansible_os_family == "Debian"
+    - ansible_lsb.id == "Ubuntu"
+    - ansible_lsb.major_release|int >= 18
+
 - name: Install pip packages
   pip:
     name: "{{ pip_custom_packages|default(omit) }}"
     state: present
+    executable: pip3
   when: pip_custom_packages is defined
+
+- name: Upgrade pip centos
+  pip:
+    name: pip
+    state: latest
+    executable: pip3
+  when: ansible_os_family == "RedHat"
