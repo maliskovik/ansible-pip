@@ -52,5 +52,5 @@
   pip:
     name: pip
     state: latest
-    executable: pip3
+    executable: pip-3
   when: ansible_os_family == "RedHat"
