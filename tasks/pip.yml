@@ -25,16 +25,6 @@
     name: "{{ pip_packages_arch|default(omit) }}"
   when: ansible_os_family == "Archlinux"
 
-- name: Upgrade pip ubuntu
-  pip:
-    name: pip
-    state: latest
-    executable: pip3
-  when:
-    - ansible_os_family == "Debian"
-    - ansible_lsb.id == "Ubuntu"
-    - ansible_lsb.major_release|int >= 18
-
 - name: Install pip packages
   pip:
     name: "{{ pip_custom_packages|default(omit) }}"
